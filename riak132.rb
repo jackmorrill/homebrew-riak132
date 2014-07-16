@@ -10,13 +10,12 @@ class Riak132 < Formula
 
   depends_on :macos => :mountain_lion
   depends_on :arch => :x86_64
-  depends_on 'erlang'
 
   def install
     libexec.install Dir["*"]
-    inreplace "#{libexec}/lib/env.sh" do |s|
-      s.change_make_var! "RUNNER_BASE_DIR", libexec
-    end
+    # inreplace "#{libexec}/lib/env.sh" do |s|
+    #   s.change_make_var! "RUNNER_BASE_DIR", libexec
+    # end
     bin.write_exec_script libexec/"bin/riak"
     bin.write_exec_script libexec/"bin/riak-admin"
     bin.write_exec_script libexec/"bin/riak-debug"
