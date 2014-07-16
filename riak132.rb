@@ -14,6 +14,9 @@ class Riak132 < Formula
 
   def install
     libexec.install Dir["*"]
+    inreplace "#{libexec}/lib/env.sh" do |s|
+      s.change_make_var! "RUNNER_BASE_DIR", libexec
+    end
     bin.write_exec_script libexec/"bin/riak"
     bin.write_exec_script libexec/"bin/riak-admin"
     bin.write_exec_script libexec/"bin/riak-debug"
